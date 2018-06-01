@@ -39,10 +39,6 @@ class TestClient(channel: Channel) {
             System.out.println("RPC failed: ${e.status}")
             return
         }
-
-    }
-
-    fun shutdown() {
-
+        response
     }
 }
