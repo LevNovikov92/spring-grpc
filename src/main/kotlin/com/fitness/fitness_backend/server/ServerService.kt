@@ -27,7 +27,7 @@ class ServerService {
     private fun buildServer(config: ServerConfig): Server {
         return config.run {
             ServerBuilder.forPort(port)
-//                    .addService(DiffServiceImpl())
+                    .addService(DiffServiceImpl())
                     .build()
         }
     }
