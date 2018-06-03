@@ -1,11 +1,15 @@
 package com.fitness.fitness_backend.server
 
+import com.fitness.fitness_backend.diff_service.DiffServiceImpl
 import io.grpc.Server
 import io.grpc.ServerBuilder
+import org.springframework.beans.factory.annotation.Autowired
 import java.io.IOException
 
 class ServerService {
 
+    @Autowired
+    lateinit var diffService: DiffServiceImpl
     private var server: Server? = null
 
     @Throws(IOException::class)
@@ -26,7 +30,7 @@ class ServerService {
     private fun buildServer(config: ServerConfig): Server {
         return config.run {
             ServerBuilder.forPort(port)
-//                    .addService(DiffServiceImpl())
+                    .addService(diffService)
                     .build()
         }
     }

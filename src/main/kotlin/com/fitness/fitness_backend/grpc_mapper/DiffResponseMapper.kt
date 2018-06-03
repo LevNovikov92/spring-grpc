@@ -9,7 +9,7 @@ class DiffResponseMapper : GrpcResponseMapper<Diff, DiffResponse> {
     override fun to(entity: Diff): DiffResponse =
             entity.run {
                 DiffResponse.getDefaultInstance().toBuilder()
-//                        .setTimestamp(timestamp)
+                        .setTimestamp(timestamp)
                         .addAllClients(clients.map { clientMapper.to(it) })
                         .build()
             }
