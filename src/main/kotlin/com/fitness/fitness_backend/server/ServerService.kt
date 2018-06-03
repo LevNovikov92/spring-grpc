@@ -1,6 +1,5 @@
 package com.fitness.fitness_backend.server
 
-import com.fitness.fitness_backend.diff_service.DiffServiceImpl
 import io.grpc.Server
 import io.grpc.ServerBuilder
 import java.io.IOException
@@ -27,7 +26,7 @@ class ServerService {
     private fun buildServer(config: ServerConfig): Server {
         return config.run {
             ServerBuilder.forPort(port)
-                    .addService(DiffServiceImpl())
+//                    .addService(DiffServiceImpl())
                     .build()
         }
     }

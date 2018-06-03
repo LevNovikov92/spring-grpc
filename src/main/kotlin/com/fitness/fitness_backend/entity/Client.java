@@ -51,11 +51,12 @@ public class Client implements Model {
         isArchived = archived;
     }
 
-    public Long getChanged() {
+    public long getChanged() {
         return changed;
     }
 
-    public void setChanged(Long changed) {
+    @Override
+    public void setChanged(long l) {
         this.changed = changed;
     }
 }

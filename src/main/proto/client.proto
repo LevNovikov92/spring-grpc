@@ -14,12 +14,12 @@ service Diff {
 
 // The request message containing the user's name.
 message DiffRequest {
-  int32 timestamp = 1;
+//  int64 timestamp = 1;
   repeated Client clients = 2;
 }
 
 message DiffResponse {
-  int32 timestamp = 1;
+  int64 timestamp = 1;
   repeated Client clients = 2;
 }
 

@@ -11,7 +11,7 @@ class DiffRequestMapper : GrpcRequestMapper<Diff, DiffRequest> {
     override fun from(message: DiffRequest): Diff =
             message.run {
                 Diff(
-                        timestamp,
+                        0, //TODO re
                         clientsList.map { clientMapper.from(it) })
             }
 }

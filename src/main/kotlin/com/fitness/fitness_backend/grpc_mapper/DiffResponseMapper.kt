@@ -1,6 +1,5 @@
 package com.fitness.fitness_backend.grpc_mapper
 
-import com.fitness.fitness_backend.diff.DiffRequest
 import com.fitness.fitness_backend.diff.DiffResponse
 import com.fitness.fitness_backend.entity.diff.Diff
 
@@ -10,7 +9,7 @@ class DiffResponseMapper : GrpcResponseMapper<Diff, DiffResponse> {
     override fun to(entity: Diff): DiffResponse =
             entity.run {
                 DiffResponse.getDefaultInstance().toBuilder()
-                        .setTimestamp(timestamp)
+//                        .setTimestamp(timestamp)
                         .addAllClients(clients.map { clientMapper.to(it) })
                         .build()
             }

@@ -9,7 +9,7 @@ import java.util.UUID
  */
 interface Model {
 
-    var changed: Long?
+    var changed: Long
 
     var id: UUID
 }
