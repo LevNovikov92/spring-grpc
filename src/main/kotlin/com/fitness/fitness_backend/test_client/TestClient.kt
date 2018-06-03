@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit
 fun main(args: Array<String>) {
     var channel: ManagedChannel? = null
     try {
-        val channel = ManagedChannelBuilder.forAddress("localhost", 50051)
+        val channel = ManagedChannelBuilder.forAddress("localhost", 50052)
                 .usePlaintext()
                 .build()
         val client = TestClient(channel)

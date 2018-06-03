@@ -12,19 +12,24 @@ import com.fitness.fitness_backend.repository.BaseRepository
 import com.fitness.fitness_backend.repository.ClientRepository
 import com.fitness.fitness_backend.utils.DateUtils
 import io.grpc.stub.StreamObserver
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.NoSuchMessageException
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.stereotype.Component
 import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
 class DiffServiceImpl(
-        private val clientRepository: ClientRepository,
         private val diffResponseMapper: DiffResponseMapper = DiffResponseMapper(),
         private val diffRequestMapper: DiffRequestMapper = DiffRequestMapper()
 ) : DiffGrpc.DiffImplBase() {
 
+    @Autowired
+    lateinit var clientRepository: ClientRepository
+
     override fun getDiff(request: DiffRequest, responseObserver: StreamObserver<DiffResponse>) {
+        clientRepository.findAll()
         responseObserver.onNext(
                 diffResponseMapper.to(
                         synchronize(
@@ -59,9 +64,9 @@ class DiffServiceImpl(
                 repository = getRepositoryByEntity(entity)
             }
 
-            val id = entity.id
-            val existedEntity = repository.findById(UUID.randomUUID()) as Model //TODO remove random
-            if (entity.changed < existedEntity.changed) {
+            val existedEntity = repository.findById(entity.id)
+            if (!existedEntity.isPresent) continue
+            if (entity.changed < existedEntity.get().changed) {
                 continue
             }
             repository.save(entity)
